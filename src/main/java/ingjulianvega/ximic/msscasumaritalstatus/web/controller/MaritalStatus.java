@@ -40,7 +40,7 @@ public interface MaritalStatus {
 
     @ApiOperation(value = "Endpoint to create a marital status", nickname = "create", notes = "Creates a new marital status", tags={ "marital status", })
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The operation was successful."),
+            @ApiResponse(code = 201, message = "The operation was successful."),
             @ApiResponse(code = 400, message = "400 - business error", response = ApiError.class),
             @ApiResponse(code = 500, message = "500 - server error", response = ApiError.class) })
     @RequestMapping(value = "/",

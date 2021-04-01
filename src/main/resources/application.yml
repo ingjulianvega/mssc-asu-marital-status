@@ -6,6 +6,9 @@ server:
   port: 8080
   servlet:
     context-path: /asu/v1/marital-status
+logging:
+  level:
+    root: DEBUG
 #Swagger API doc
 swagger:
   allowed: true
