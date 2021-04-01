@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ssc-asu-marital-status
+#General configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /asu/v1/marital-status
+#Swagger API doc
+swagger:
+  allowed: true
+  api:
+    title: Marital status microservice
+    version: '@project.version@'
+    description: Marital status management microservice (Estado civil)
