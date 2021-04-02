@@ -9,4 +9,4 @@ https://github.com/ingjulianvega/mssc-asu-bom
 
 ### OpenAPI
 
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/asu/v1/marital-status/swagger-ui.html
