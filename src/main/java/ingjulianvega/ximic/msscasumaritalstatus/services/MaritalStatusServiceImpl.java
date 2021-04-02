@@ -10,6 +10,7 @@ import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusDto;
 import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class MaritalStatusServiceImpl implements MaritalStatusService {
     private final MaritalStatusRepository maritalStatusRepository;
     private final MaritalStatusMapper maritalStatusMapper;
 
+    @Cacheable(cacheNames = "maritalStatusListCache")
     @Override
     public MaritalStatusList get() {
         log.debug("get()...");
@@ -31,6 +33,7 @@ public class MaritalStatusServiceImpl implements MaritalStatusService {
                 .build();
     }
 
+    @Cacheable(cacheNames = "maritalStatusCache")
     @Override
     public MaritalStatusDto getById(UUID id) {
         log.debug("getById()...");

@@ -5,15 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MaritalStatusList   {
+public class MaritalStatusList implements Serializable {
 
-  public ArrayList<MaritalStatusDto>  maritalStatusList;
+  static final long serialVersionUID = -8166892959554330323L;
+
+  public ArrayList<MaritalStatusDto> maritalStatusList;
 
 }
 

@@ -7,6 +7,10 @@ spring:
       enabled: true
   datasource:
     url: jdbc:h2:mem:testdb;MODE=MYSQL
+  #Cache
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
 #General configuration
 server:
   port: 8080
@@ -22,3 +26,4 @@ marital-status:
   prefix: 'API-MS:'
   error:
     general: There was an unexpected error. Please try again.
+
