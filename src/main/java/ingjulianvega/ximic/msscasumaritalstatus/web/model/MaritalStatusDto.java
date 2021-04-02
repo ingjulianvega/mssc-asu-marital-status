@@ -5,14 +5,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
+
+import static ingjulianvega.ximic.msscasumaritalstatus.configuration.ErrorCodeMessages.VALIDATION_NAME_NULL;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MaritalStatusDto   {
-
-  private Integer id ;
-  private String name ;
+public class MaritalStatusDto {
+    @Null
+    private Integer id;
+    @NotBlank(message = VALIDATION_NAME_NULL)
+    private String name;
 
 }
 

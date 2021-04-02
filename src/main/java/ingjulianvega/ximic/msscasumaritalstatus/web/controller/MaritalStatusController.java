@@ -1,6 +1,7 @@
 package ingjulianvega.ximic.msscasumaritalstatus.web.controller;
 
 import ingjulianvega.ximic.msscasumaritalstatus.services.MaritalStatusService;
+import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatus;
 import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusDto;
 import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusList;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-public class MaritalStatusController implements MaritalStatus {
+public class MaritalStatusController implements MaritalStatusI {
     private final MaritalStatusService maritalStatusService;
 
     @Override
@@ -22,8 +24,8 @@ public class MaritalStatusController implements MaritalStatus {
     }
 
     @Override
-    public ResponseEntity<MaritalStatusDto> getById(@NotNull Integer id) {
-        return new ResponseEntity<>(maritalStatusService.getById(), HttpStatus.OK);
+    public ResponseEntity<MaritalStatusDto> getById(@NotNull UUID id) {
+        return new ResponseEntity<>(maritalStatusService.getById(id), HttpStatus.OK);
     }
 
     @Override
@@ -33,14 +35,14 @@ public class MaritalStatusController implements MaritalStatus {
     }
 
     @Override
-    public ResponseEntity<Void> updateById(@NotNull Integer id, @NotNull @Valid MaritalStatus maritalStatus) {
-        maritalStatusService.updateById();
+    public ResponseEntity<Void> updateById(@NotNull UUID id, @NotNull @Valid MaritalStatus maritalStatus) {
+        maritalStatusService.updateById(id, maritalStatus);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
-    public ResponseEntity<Void> deleteById(@NotNull Integer id) {
-        maritalStatusService.deleteById();
+    public ResponseEntity<Void> deleteById(@NotNull UUID id) {
+        maritalStatusService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

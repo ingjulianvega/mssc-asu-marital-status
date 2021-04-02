@@ -1,18 +1,14 @@
 package ingjulianvega.ximic.msscasumaritalstatus.web.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ApiError   {
+public class ApiError {
 
-  private String code;
-  private String description;
-
+    private String code;
+    private String description;
 }
-
