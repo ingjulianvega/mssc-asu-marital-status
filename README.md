@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/ingjulianvega/mssc-asu-marital-status.svg?style=svg)](https://circleci.com/gh/ingjulianvega/mssc-asu-marital-status)
 # ASU marital status management microservice
 
 ### BOM
