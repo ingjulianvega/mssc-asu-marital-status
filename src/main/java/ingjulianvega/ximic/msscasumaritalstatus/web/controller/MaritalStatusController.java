@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,24 +22,24 @@ public class MaritalStatusController implements MaritalStatus {
     }
 
     @Override
-    public ResponseEntity<MaritalStatusDto> getById(Integer id) {
+    public ResponseEntity<MaritalStatusDto> getById(@NotNull Integer id) {
         return new ResponseEntity<>(maritalStatusService.getById(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> create(@Valid MaritalStatus maritalStatus) {
+    public ResponseEntity<Void> create(@NotNull @Valid MaritalStatus maritalStatus) {
         maritalStatusService.create(maritalStatus);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> updateById(Integer id, @Valid MaritalStatus maritalStatus) {
+    public ResponseEntity<Void> updateById(@NotNull Integer id, @NotNull @Valid MaritalStatus maritalStatus) {
         maritalStatusService.updateById();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
-    public ResponseEntity<Void> deleteById(Integer id) {
+    public ResponseEntity<Void> deleteById(@NotNull Integer id) {
         maritalStatusService.deleteById();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

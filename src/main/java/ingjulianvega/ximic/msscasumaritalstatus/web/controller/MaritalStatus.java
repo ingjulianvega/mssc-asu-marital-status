@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 public interface MaritalStatus {
 
@@ -43,7 +44,7 @@ public interface MaritalStatus {
     @RequestMapping(value = "/{id}",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<MaritalStatusDto> getById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @PathVariable("id") Integer id);
+    ResponseEntity<MaritalStatusDto> getById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @NotNull @PathVariable("id") Integer id);
 
     @Operation(summary = "Endpoint to create a marital status", description = "Creates a new marital status", tags = {"marital status"})
     @ApiResponses(value = {
@@ -56,7 +57,7 @@ public interface MaritalStatus {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Void> create(@Parameter(in = ParameterIn.DEFAULT, description = "Name of the new marital staus", required = true, schema = @Schema()) @Valid @RequestBody MaritalStatus body);
+    ResponseEntity<Void> create(@Parameter(in = ParameterIn.DEFAULT, description = "Name of the new marital staus", required = true, schema = @Schema()) @NotNull @Valid @RequestBody MaritalStatus body);
 
 
     @Operation(summary = "Endpoint to update the information of a marital status given the id", description = "Updates a marital status", tags = {"marital status"})
@@ -70,7 +71,8 @@ public interface MaritalStatus {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.PUT)
-    ResponseEntity<Void> updateById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @PathVariable("id") Integer id, @Parameter(in = ParameterIn.DEFAULT, description = "Name of the new marital staus", required = true, schema = @Schema()) @Valid @RequestBody MaritalStatus body);
+    ResponseEntity<Void> updateById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @NotNull @PathVariable("id") Integer id,
+                                    @Parameter(in = ParameterIn.DEFAULT, description = "Name of the new marital staus", required = true, schema = @Schema()) @NotNull @Valid @RequestBody MaritalStatus body);
 
 
     @Operation(summary = "Endpoint to delete a marital status", description = "Deletes a marital status", tags = {"marital status"})
@@ -83,7 +85,7 @@ public interface MaritalStatus {
     @RequestMapping(value = "/{id}",
             produces = {"application/json"},
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @PathVariable("id") Integer id);
+    ResponseEntity<Void> deleteById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @NotNull @PathVariable("id") Integer id);
 
 
 }
