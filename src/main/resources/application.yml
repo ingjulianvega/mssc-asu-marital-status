@@ -1,11 +1,18 @@
+#Application
 spring:
   application:
     name: ssc-asu-marital-status
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL
 #General configuration
 server:
   port: 8080
   servlet:
     context-path: /asu/v1/marital-status
+#Logging
 logging:
   level:
     root: DEBUG
