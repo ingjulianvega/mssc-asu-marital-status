@@ -9,10 +9,3 @@ server:
 logging:
   level:
     root: DEBUG
-#Swagger API doc
-swagger:
-  allowed: true
-  api:
-    title: Marital status microservice
-    version: '@project.version@'
-    description: Marital status management microservice (Estado civil)

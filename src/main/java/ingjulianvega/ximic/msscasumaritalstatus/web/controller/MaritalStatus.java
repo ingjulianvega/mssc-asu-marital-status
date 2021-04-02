@@ -3,10 +3,13 @@ package ingjulianvega.ximic.msscasumaritalstatus.web.controller;
 import ingjulianvega.ximic.msscasumaritalstatus.web.model.ApiError;
 import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusDto;
 import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusList;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,60 +20,70 @@ import javax.validation.Valid;
 
 public interface MaritalStatus {
 
-    @ApiOperation(value = "Endpoint to get the list of marital statuses", nickname = "get", notes = "Returns a list of marital statuses", response = MaritalStatusList.class, tags={ "marital status", })
+    @Operation(summary = "Endpoint to get the list of marital statuses", description = "Returns a list of marital statuses", tags = {"marital status"})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The operation was successful.", response = MaritalStatusList.class),
-            @ApiResponse(code = 400, message = "400 - business error", response = ApiError.class),
-            @ApiResponse(code = 500, message = "500 - server error", response = ApiError.class) })
+            @ApiResponse(responseCode = "200", description = "The operation was successful.", content = @Content(schema = @Schema(implementation = MaritalStatusList.class))),
+
+            @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
+
+            @ApiResponse(responseCode = "500", description = "500 - server error", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     @RequestMapping(value = "/",
-            produces = { "application/json" },
+            produces = {"application/json"},
             method = RequestMethod.GET)
     ResponseEntity<MaritalStatusList> get();
 
 
-    @ApiOperation(value = "Endpoint to get the information of a  marital status given the id", nickname = "getById", notes = "Returns a marital status", response = MaritalStatusDto.class, tags={ "marital status", })
+    @Operation(summary = "Endpoint to get the information of a  marital status given the id", description = "Returns a marital status", tags = {"marital status"})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The operation was successful.", response = MaritalStatusDto.class),
-            @ApiResponse(code = 400, message = "400 - business error", response = ApiError.class),
-            @ApiResponse(code = 500, message = "500 - server error", response = ApiError.class) })
+            @ApiResponse(responseCode = "200", description = "The operation was successful.", content = @Content(schema = @Schema(implementation = MaritalStatusDto.class))),
+
+            @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
+
+            @ApiResponse(responseCode = "500", description = "500 - server error", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     @RequestMapping(value = "/{id}",
-            produces = { "application/json" },
+            produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<MaritalStatusDto> getById(@ApiParam(value = "The marital status id",required=true) @PathVariable("id") Integer id);
+    ResponseEntity<MaritalStatusDto> getById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @PathVariable("id") Integer id);
 
-    @ApiOperation(value = "Endpoint to create a marital status", nickname = "create", notes = "Creates a new marital status", tags={ "marital status", })
+    @Operation(summary = "Endpoint to create a marital status", description = "Creates a new marital status", tags = {"marital status"})
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The operation was successful."),
-            @ApiResponse(code = 400, message = "400 - business error", response = ApiError.class),
-            @ApiResponse(code = 500, message = "500 - server error", response = ApiError.class) })
+            @ApiResponse(responseCode = "204", description = "The operation was successful."),
+
+            @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
+
+            @ApiResponse(responseCode = "500", description = "500 - server error", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     @RequestMapping(value = "/",
-            produces = { "application/json" },
+            produces = {"application/json"},
+            consumes = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Void> create(@ApiParam(value = "Name of the new marital staus" ,required=true )  @Valid @RequestBody MaritalStatus maritalStatus);
+    ResponseEntity<Void> create(@Parameter(in = ParameterIn.DEFAULT, description = "Name of the new marital staus", required = true, schema = @Schema()) @Valid @RequestBody MaritalStatus body);
 
-    @ApiOperation(value = "Endpoint to update the information of a marital status given the id", nickname = "updateById", notes = "Updates a marital status", tags={ "marital status", })
+
+    @Operation(summary = "Endpoint to update the information of a marital status given the id", description = "Updates a marital status", tags = {"marital status"})
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The operation was successful."),
-            @ApiResponse(code = 400, message = "400 - business error", response = ApiError.class),
-            @ApiResponse(code = 500, message = "500 - error de server, it'll show a generic user message", response = ApiError.class) })
+            @ApiResponse(responseCode = "204", description = "The operation was successful."),
+
+            @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
+
+            @ApiResponse(responseCode = "500", description = "500 - error de server, it'll show a generic user message", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     @RequestMapping(value = "/{id}",
-            produces = { "application/json" },
+            produces = {"application/json"},
+            consumes = {"application/json"},
             method = RequestMethod.PUT)
-    ResponseEntity<Void> updateById(@ApiParam(value = "The marital status id",required=true) @PathVariable("id") Integer id,@ApiParam(value = "Name of the new marital staus" ,required=true )  @Valid @RequestBody MaritalStatus maritalStatus);
+    ResponseEntity<Void> updateById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @PathVariable("id") Integer id, @Parameter(in = ParameterIn.DEFAULT, description = "Name of the new marital staus", required = true, schema = @Schema()) @Valid @RequestBody MaritalStatus body);
 
 
-
-    @ApiOperation(value = "Endpoint to delete a marital status", nickname = "deleteById", notes = "Deletes a marital status", tags={ "marital status", })
+    @Operation(summary = "Endpoint to delete a marital status", description = "Deletes a marital status", tags = {"marital status"})
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The operation was successful."),
-            @ApiResponse(code = 400, message = "400 - business error", response = ApiError.class),
-            @ApiResponse(code = 500, message = "500 - error de server, it'll show a generic user message", response = ApiError.class) })
+            @ApiResponse(responseCode = "204", description = "The operation was successful."),
+
+            @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
+
+            @ApiResponse(responseCode = "500", description = "500 - error de server, it'll show a generic user message", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     @RequestMapping(value = "/{id}",
-            produces = { "application/json" },
+            produces = {"application/json"},
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteById(@ApiParam(value = "The marital status id",required=true) @PathVariable("id") Integer id);
-
-
+    ResponseEntity<Void> deleteById(@Parameter(in = ParameterIn.PATH, description = "The marital status id", required = true, schema = @Schema()) @PathVariable("id") Integer id);
 
 
 }

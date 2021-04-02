@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MaritalStatusDto   {
 
-  private Integer id = null;
-  private String name = null;
+  private Integer id ;
+  private String name ;
 
 }
 
