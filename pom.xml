@@ -11,7 +11,7 @@
 
 	<groupId>ingjulianvega.ximic</groupId>
 	<artifactId>mssc-asu-marital-status</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>mssc-asu-marital-status</name>
 	<description>ASU marital status management microservice</description>
 

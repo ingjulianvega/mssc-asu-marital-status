@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
 import java.io.Serializable;
+import java.util.UUID;
 
 import static ingjulianvega.ximic.msscasumaritalstatus.configuration.ErrorCodeMessages.VALIDATION_NAME_NULL;
 
@@ -19,7 +20,7 @@ public class MaritalStatusDto implements Serializable {
     static final long serialVersionUID = 3288070695886353002L;
 
     @Null
-    private Integer id;
+    private UUID id;
     @NotBlank(message = VALIDATION_NAME_NULL)
     private String name;
 
