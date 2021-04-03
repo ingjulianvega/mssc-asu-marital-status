@@ -19,3 +19,7 @@ http://localhost:8080/asu/v1/marital-status/h2-console
 ```
 jdbc:h2:mem:testdb
 ```
+
+### DockerHub
+
+https://hub.docker.com/repository/docker/ingjulianvega/mssc-asu-marital-status
