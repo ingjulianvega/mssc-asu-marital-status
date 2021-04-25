@@ -29,7 +29,7 @@ public class MaritalStatusServiceImpl implements MaritalStatusService {
         log.debug("get()...");
         return MaritalStatusList
                 .builder()
-                .maritalStatusList(maritalStatusMapper.maritalStatusEntityListToMaritalStatusDtoList(maritalStatusRepository.findAll()))
+                .maritalStatusList(maritalStatusMapper.maritalStatusEntityListToMaritalStatusDtoList(maritalStatusRepository.findAllByOrderByName()))
                 .build();
     }
 
