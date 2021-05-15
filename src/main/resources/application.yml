@@ -9,7 +9,9 @@ contact-url: https://twitter.com/ingjulianvega
 
 spring:
   application:
-    name: ssc-asu-marital-status
+    name: mssc-asu-marital-status
+  profiles:
+    active: local-discovery
   h2:
     console:
       enabled: true
