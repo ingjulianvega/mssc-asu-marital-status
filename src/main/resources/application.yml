@@ -9,7 +9,7 @@ contact-url: https://twitter.com/ingjulianvega
 
 spring:
   application:
-    name: mssc-asu-marital-status
+    name: @artifactId@
   profiles:
     active: local-discovery
   h2:
