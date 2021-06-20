@@ -25,20 +25,25 @@ spring:
       config: classpath:ehcache.xml
   #Zipkin
   zipkin:
-    enabled: false
+    baseUrl: http://localhost:9411/
 #General configuration
 server:
   port: 8080
   servlet:
     context-path: /asu/v1/marital-status
 #Logging
-#logging:
-#  level:
-#    root: DEBUG
+logging:
+  level:
+    root: DEBUG
 #Exceptions
 marital-status:
   success: The operation was successful.
-  prefix: 'API-MS:'
+  prefix: 'MARITAL-STATUS'
   error:
     general: There was an unexpected error. Please try again.
+#Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://netflix:eureka@localhost:8761/eureka
 
