@@ -32,15 +32,12 @@ server:
   servlet:
     context-path: /asu/v1/marital-status
 #Logging
-logging:
-  level:
-    root: DEBUG
+#logging:
+#  level:
+#    root: DEBUG
 #Exceptions
 marital-status:
-  success: The operation was successful.
-  prefix: 'MARITAL-STATUS'
-  error:
-    general: There was an unexpected error. Please try again.
+  api: @artifactId@
 #Eureka
 eureka:
   client:
