@@ -10,7 +10,6 @@ import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.UUID;
 
-import static ingjulianvega.ximic.msscasumaritalstatus.configuration.ErrorCodeMessages.VALIDATION_NAME_NULL;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +20,7 @@ public class MaritalStatusDto implements Serializable {
 
     @Null
     private UUID id;
-    @NotBlank(message = VALIDATION_NAME_NULL)
+    @NotBlank
     private String name;
 
 }
