@@ -11,6 +11,7 @@ import ingjulianvega.ximic.msscasumaritalstatus.web.model.MaritalStatusList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -38,7 +39,14 @@ public class MaritalStatusServiceImpl implements MaritalStatusService {
     public MaritalStatusDto getById(UUID id) {
         log.debug("getById()...");
         return maritalStatusMapper.maritalStatusEntityToMaritalStatusDto(
-                maritalStatusRepository.findById(id).orElseThrow(() -> new MaritalStatusException(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND, "")));
+                maritalStatusRepository.findById(id).orElseThrow(() -> MaritalStatusException
+                        .builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .apiCode(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_API_CODE)
+                        .error(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_ERROR)
+                        .message(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_MESSAGE)
+                        .solution(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_SOLUTION)
+                        .build()));
     }
 
     @Override
@@ -56,7 +64,14 @@ public class MaritalStatusServiceImpl implements MaritalStatusService {
     @Override
     public void updateById(UUID id, MaritalStatus maritalStatus) {
         log.debug("updateById...");
-        MaritalStatusEntity maritalStatusEntity = maritalStatusRepository.findById(id).orElseThrow(() -> new MaritalStatusException(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND, ""));
+        MaritalStatusEntity maritalStatusEntity = maritalStatusRepository.findById(id).orElseThrow(() -> MaritalStatusException
+                .builder()
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .apiCode(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_API_CODE)
+                .error(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_ERROR)
+                .message(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_MESSAGE)
+                .solution(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND_SOLUTION)
+                .build());
         maritalStatusEntity.setName(maritalStatus.getName());
 
         maritalStatusRepository.save(maritalStatusEntity);
